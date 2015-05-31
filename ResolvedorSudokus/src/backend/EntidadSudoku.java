@@ -2,7 +2,8 @@ package backend;
 
 import java.util.List;
 
-public class EntidadSudoku 
+
+public abstract class EntidadSudoku 
 {
 	
 	private List<Espacio> entidadSudoku;
@@ -15,12 +16,12 @@ public class EntidadSudoku
 	
 	private Boolean resolver(Espacio espacio)
 	{
-		boolean resuelto = true;
-		if(!espacio.estaResuelto())
-		{
-			resuelto=false;
-		}
-		return resuelto;
+		return false;
+	}
+	
+	public void editarValoresFaltasma()
+	{
+		
 	}
 }
 
