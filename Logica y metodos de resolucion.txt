@@ -1,14 +1,14 @@
 ======================
-Metodos de Resolución
+Metodos de ResoluciÃ³n
 ======================
 1) Checkeo simple de filas, columnas y cuadrados.
-2) Eliminación de opciones a partir de un "valor fantasma"
+2) EliminaciÃ³n de opciones a partir de un "valor kiman"
 
 ============
-Lógica útil
+LÃ³gica Ãºtil
 ============
-- Uso de "valores fantasma": Se sabe que cirtos numeros pueden ir en ciertos Espacios
+- Uso de "valores kiman": Se sabe que cirtos numeros pueden ir en ciertos Espacios
   lo que permite eliminar la posibilidad de que esten en otros Espacios de la Entidad 
   Sudoku
-- Si n Espacios tienen n posiciones fantasmas, esos n valores se dan como sabidos para la
+- Si n Espacios tienen n posiciones kiman, esos n valores se dan como sabidos para la
   Entidad Sudoku, permitiendo eliminar opciones.
