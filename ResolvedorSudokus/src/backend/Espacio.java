@@ -4,9 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Espacio {
+	
 
 	private List<Integer> opciones;
-	private Integer valor = -1;
+	private Integer valor;
+
+	public Espacio(int valor,int ordenSudoku)
+	{
+		inicializarOpciones(ordenSudoku);
+		if(valor==0)
+		{
+			this.valor=-1;
+		}
+		else
+		{
+			setValor(valor);
+		}
+		
+	}
+	
 
 	public Boolean estaResuelto() {
 		boolean resuelto = false;
@@ -33,7 +49,7 @@ public class Espacio {
 	public void comparar(Espacio espacioNemesis) {
 		int valorNemesis = espacioNemesis.getValor();
 		if ((espacioNemesis.tieneValor()) && (opciones.contains(valorNemesis))) {
-			opciones.remove(valorNemesis);
+			opciones.remove((Object)valorNemesis);
 		}
 	}
 
@@ -57,6 +73,15 @@ public class Espacio {
 		this.valor = valor;
 		opciones.clear();
 		opciones.add(valor);
+	}
+	
+	private void inicializarOpciones(int orden) {
+		opciones = new ArrayList<>();
+		for(int i=1;i<=orden;i++)
+		{
+			opciones.add(i);
+		}
+		
 	}
 
 }

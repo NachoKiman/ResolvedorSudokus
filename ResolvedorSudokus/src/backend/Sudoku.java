@@ -9,8 +9,11 @@ public class Sudoku {
 	private List<EntidadSudoku> cuadrados;
 	private int orden;
 
-	public Sudoku() {
+	public Sudoku(List<EntidadSudoku> filas, List<EntidadSudoku>columnas, List<EntidadSudoku> cuadrados) {
 		super();
+		this.filas = filas;
+		this.columnas = columnas;
+		this.cuadrados = cuadrados;
 		orden = filas.size();
 	}
 
@@ -19,6 +22,7 @@ public class Sudoku {
 		while (!resuelto) {
 			reducirOpciones();
 			resuelto = manejarResultado();
+			mostrar();
 		}
 	}
 
@@ -73,6 +77,22 @@ public class Sudoku {
 			entidades.get(i).buscarValoresOcultos();
 		}
 
+	}
+
+	public void mostrar() {
+		String aMostrar="";
+		for(int i=0; i<orden;i++)
+		{
+			EntidadSudoku entidad = filas.get(i);
+			for(int j=0; j<orden;j++)
+			{
+				aMostrar+=entidad.getEspacios().get(j).getValor()+" ";
+			}
+			aMostrar+="\n";
+		}
+		
+		System.out.println(aMostrar);
+		
 	}
 
 }

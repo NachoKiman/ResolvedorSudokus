@@ -1,14 +1,15 @@
 package backend;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class EntidadSudoku {
+public class EntidadSudoku {
 
 	private List<Espacio> espacios;
 
-	public EntidadSudoku(List<Espacio> entidadSudoku) {
+	public EntidadSudoku() {
 		super();
-		this.espacios = entidadSudoku;
+		espacios = new ArrayList<>();
 	}
 
 	public List<Espacio> getEspacios() {
@@ -24,12 +25,23 @@ public abstract class EntidadSudoku {
 		for (int j = 0; j < espacios.size(); j++) {
 			// Setteo los espacios a comparar como todos menos el que estoy
 			// analizando
-			espaciosAComparar = espacios;
-			espaciosAComparar.remove(espacios.get(j));
-
+			
+			espaciosAComparar = this.obtenerListaEspacios();
+			espaciosAComparar.remove((Object)espacios.get(j));
+			
 			espacios.get(j).reducirOpciones(espaciosAComparar);
 		}
 
+	}
+
+	//Este metodo es necesario porque necesito una lista de espacios que no sea LA lista de espacios
+	private List<Espacio> obtenerListaEspacios() {
+		List<Espacio> listaNueva= new ArrayList<>();
+		for(int i=0; i<espacios.size();i++)
+		{
+			listaNueva.add(espacios.get(i));
+		}
+		return listaNueva;
 	}
 
 	public boolean buscarValoresNuevos() {
@@ -74,7 +86,7 @@ public abstract class EntidadSudoku {
 				// Itero las opciones del Espacio incrementando el contador de
 				// opciones.
 				for (int j = 0; j < opcionesEspacio.size(); j++) {
-					opciones[opcionesEspacio.get(j)]++;
+					opciones[opcionesEspacio.get(j)-1]++;
 				}
 			}
 
