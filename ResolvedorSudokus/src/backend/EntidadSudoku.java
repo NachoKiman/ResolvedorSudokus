@@ -92,7 +92,19 @@ public class EntidadSudoku {
 
 		}
 		// Esto es re sucio, pero nadie me puede decir que no es genial!
-		return opciones.toString().contains("1");
+		
+		return hayValoresOcultos(opciones);
+	}
+
+	private boolean hayValoresOcultos(int[] opciones) {
+		for(int i=0; i<opciones.length;i++)
+		{
+			if(opciones[i]==1)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void asignoValoresOcultos(int[] opciones) {
