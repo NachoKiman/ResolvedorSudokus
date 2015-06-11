@@ -47,7 +47,7 @@ public class EntidadSudoku {
 	public boolean buscarValoresNuevos() {
 		boolean resuelto = true;
 		for (int i = 0; i < espacios.size(); i++) {
-			resuelto = resuelto && espacios.get(i).estaResuelto();
+			resuelto = espacios.get(i).estaResuelto()&&resuelto ;
 		}
 
 		return resuelto;
@@ -111,7 +111,7 @@ public class EntidadSudoku {
 
 		for (int i = 0; i < opciones.length; i++) {
 			if (opciones[i] == 1) {
-				buscarEspacioConOpcion(opciones[i]);
+				buscarEspacioConOpcion(i+1);
 			}
 		}
 

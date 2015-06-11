@@ -52,7 +52,7 @@ public class Sudoku {
 	private boolean buscarValoresNuevos() {
 		boolean resuelto = true;
 		for (int i = 0; i < orden; i++) {
-			resuelto = resuelto && filas.get(i).buscarValoresNuevos();
+			resuelto = filas.get(i).buscarValoresNuevos()&&resuelto ;
 		}
 
 		return resuelto;
@@ -81,12 +81,21 @@ public class Sudoku {
 
 	public void mostrar() {
 		String aMostrar="";
+		String valor="";
 		for(int i=0; i<orden;i++)
 		{
 			EntidadSudoku entidad = filas.get(i);
 			for(int j=0; j<orden;j++)
 			{
-				aMostrar+=entidad.getEspacios().get(j).getValor()+" ";
+				if(entidad.getEspacios().get(j).getValor()!=-1)
+				{
+					valor = " "+entidad.getEspacios().get(j).getValor();
+				}
+				else
+				{
+					valor = ""+entidad.getEspacios().get(j).getValor();
+				}
+				aMostrar+=valor+" ";
 			}
 			aMostrar+="\n";
 		}
