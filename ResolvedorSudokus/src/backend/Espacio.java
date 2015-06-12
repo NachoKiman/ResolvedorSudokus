@@ -84,4 +84,14 @@ public class Espacio {
 		
 	}
 
+
+	public String mostrarOpciones() {
+		String aMostrar ="";
+		for(int i=0; i<opciones.size();i++)
+		{
+			aMostrar += opciones.get(i)+", ";
+		}
+		return aMostrar;
+	}
+
 }

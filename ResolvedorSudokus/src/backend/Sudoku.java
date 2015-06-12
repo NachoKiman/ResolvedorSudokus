@@ -22,7 +22,7 @@ public class Sudoku {
 		while (!resuelto) {
 			reducirOpciones();
 			resuelto = manejarResultado();
-			mostrar();
+			mostrarEstadoActual();
 		}
 	}
 
@@ -102,6 +102,33 @@ public class Sudoku {
 		
 		System.out.println(aMostrar);
 		
+	}
+	
+	public void mostrarEstadoActual()
+	{
+		String aMostrar="";
+		String valor="";
+		for(int i=0; i<orden;i++)
+		{
+			EntidadSudoku entidad = filas.get(i);
+			for(int j=0; j<orden;j++)
+			{
+				Espacio espacio = entidad.getEspacios().get(j);
+				if(espacio.getValor()!=-1)
+				{
+					valor = " "+espacio.getValor();
+				}
+				else
+				{
+					valor = ""+espacio.getValor();
+				}
+				aMostrar+=valor+": "+espacio.mostrarOpciones();
+				aMostrar+="\n";
+			}
+			
+		}
+		
+		System.out.println(aMostrar);
 	}
 
 }
