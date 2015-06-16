@@ -26,8 +26,8 @@ public class Espacio {
 
 	public Boolean estaResuelto() {
 		boolean resuelto = false;
-		if (opciones.size() == 1) {
-			if (valor == -1) {
+		if (valor == -1) {
+			if (opciones.size() == 1){
 				setValor(opciones.get(0));
 			}
 			resuelto = true;
