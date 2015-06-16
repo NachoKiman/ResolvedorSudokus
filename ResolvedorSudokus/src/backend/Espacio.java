@@ -25,12 +25,12 @@ public class Espacio {
 	
 
 	public Boolean estaResuelto() {
-		boolean resuelto = false;
+		boolean resuelto = true;
 		if (valor == -1) {
 			if (opciones.size() == 1){
 				setValor(opciones.get(0));
 			}
-			resuelto = true;
+			resuelto = false;
 		}
 		return resuelto;
 

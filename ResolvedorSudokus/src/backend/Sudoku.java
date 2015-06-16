@@ -22,7 +22,7 @@ public class Sudoku {
 		while (!resuelto) {
 			reducirOpciones();
 			resuelto = manejarResultado();
-			mostrar();
+			//mostrar();
 		}
 	}
 

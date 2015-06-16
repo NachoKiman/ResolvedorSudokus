@@ -15,7 +15,7 @@ public class Resolvedor {
 
 		sudoku.resolver();
 
-//		sudoku.mostrar();
+		sudoku.mostrar();
 
 	}
 	
