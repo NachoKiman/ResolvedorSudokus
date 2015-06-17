@@ -76,6 +76,7 @@ public class EntidadSudoku {
 		return opciones;
 	}
 
+	//Voy llenando el array de opciones con la cantidad de veces que aparece cada opcion en la entidad
 	private boolean llenoArray(int[] opciones) {
 		List<Integer> opcionesEspacio;
 		// Itero los espacios
@@ -94,6 +95,7 @@ public class EntidadSudoku {
 		return hayValoresOcultos(opciones);
 	}
 
+	//Busco si hay valores ocultos
 	private boolean hayValoresOcultos(int[] opciones) {
 		for (int i = 0; i < opciones.length; i++) {
 			if (opciones[i] == 1) {
@@ -102,7 +104,7 @@ public class EntidadSudoku {
 		}
 		return false;
 	}
-
+	//Busco que Espacio de la Entidad es el unico que tiene los valores ocultos y los asigno
 	private void asignoValoresOcultos(int[] opciones) {
 
 		for (int i = 0; i < opciones.length; i++) {
@@ -113,6 +115,7 @@ public class EntidadSudoku {
 
 	}
 
+	//Busco que espacio de la Entidad tiene dentro de sus @opciones la opcion @numero
 	private void buscarEspacioConOpcion(int numero) {
 		for (int j = 0; j < espacios.size(); j++) {
 			if (espacios.get(j).getOpciones().contains(numero)) {
@@ -121,6 +124,34 @@ public class EntidadSudoku {
 
 		}
 
+	}
+	//Busco si hay espacios de la entidad que tengan la mismas opciones(n espacios con n opciones iguales)
+	public void buscarValoresFantasmas() {
+		int cantidadOpcionesEncontradas;
+		for(int i = 0; i < espacios.size(); i++)
+		{
+			//Analizo espacio a espacio
+			Espacio espacioAnalizado = espacios.get(i);
+			//Lo inicializo en -1 porque siempre va a haber un espacio que tenga las misma opciones...el mismo espacio que preguntó
+			cantidadOpcionesEncontradas = -1;
+			for(int j = 0; j < espacios.size(); j++)
+			{
+				cantidadOpcionesEncontradas+=espacioAnalizado.sonFantasma(espacios.get(j));
+			}
+			//Si hay n espacios con n opciones iguales, saco estas n opciones de los espacios que no son fantasma
+			if(cantidadOpcionesEncontradas==espacioAnalizado.getOpciones().size())
+			{
+				for(int j = 0; j < espacios.size(); j++)
+				{
+					//Si no es un espacio fantasma, le saco los valores fantasmas a las opciones
+					if(espacioAnalizado.sonFantasma(espacios.get(j))!=1)
+					{
+						espacios.get(j).quitarValores(espacioAnalizado.getOpciones());
+					}
+				}
+			}
+		}
+		
 	}
 
 }

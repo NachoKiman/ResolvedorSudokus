@@ -94,4 +94,22 @@ public class Espacio {
 		return aMostrar;
 	}
 
+	//Devuelve 1 si son fantasmas(tienen las mismas opciones), 0 sino
+	public int sonFantasma(Espacio espacio) {
+		if(opciones.equals(espacio.opciones))
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+
+	}
+
+
+	public void quitarValores(List<Integer> opcionesAQuitar) {
+		opciones.removeAll(opcionesAQuitar);
+		
+	}
 }
