@@ -153,5 +153,74 @@ public class EntidadSudoku {
 		}
 		
 	}
+	//TODO falta refactorizar
+	public void sacarValoresFila(int numeroDeCuadrado, List<Integer> opcionesAQuitar) {
+		if((numeroDeCuadrado==0)||(numeroDeCuadrado==3)||(numeroDeCuadrado==6))
+		{
+			//Empieza por el que tiene que empezar
+			for(int i=3; i<9;i++)
+			{
+				espacios.get(i).quitarValores(opcionesAQuitar);
+			}
+		}
+		else if((numeroDeCuadrado==1)||(numeroDeCuadrado==4)||(numeroDeCuadrado==7))
+		{
+			//PERDON PROGRAMACION, PERO NO TENIA GANAS DE PENSAR COMO SACAR EL DEL MEDIO
+			//Empieza por el que tiene que empezar
+			for(int i=0; i<3;i++)
+			{
+				espacios.get(i).quitarValores(opcionesAQuitar);
+			}
+			//Empieza por el que tiene que empezar
+			for(int i=6; i<9;i++)
+			{
+				espacios.get(i).quitarValores(opcionesAQuitar);
+			}
+		}
+		else if((numeroDeCuadrado==2)||(numeroDeCuadrado==5)||(numeroDeCuadrado==8))
+		{
+			//Empieza por el que tiene que empezar
+			for(int i=0; i<6;i++)
+			{
+				espacios.get(i).quitarValores(opcionesAQuitar);
+			}
+		}
+		
+	}
+	
+	//TODO falta refactorizar
+		public void sacarValoresColumna(int numeroDeCuadrado, List<Integer> opcionesAQuitar) {
+			if((numeroDeCuadrado==0)||(numeroDeCuadrado==1)||(numeroDeCuadrado==2))
+			{
+				//Empieza por el que tiene que empezar
+				for(int i=3; i<9;i++)
+				{
+					espacios.get(i).quitarValores(opcionesAQuitar);
+				}
+			}
+			else if((numeroDeCuadrado==3)||(numeroDeCuadrado==4)||(numeroDeCuadrado==5))
+			{
+				//PERDON PROGRAMACION, PERO NO TENIA GANAS DE PENSAR COMO SACAR EL DEL MEDIO
+				//Empieza por el que tiene que empezar
+				for(int i=0; i<3;i++)
+				{
+					espacios.get(i).quitarValores(opcionesAQuitar);
+				}
+				//Empieza por el que tiene que empezar
+				for(int i=6; i<9;i++)
+				{
+					espacios.get(i).quitarValores(opcionesAQuitar);
+				}
+			}
+			else if((numeroDeCuadrado==6)||(numeroDeCuadrado==7)||(numeroDeCuadrado==8))
+			{
+				//Empieza por el que tiene que empezar
+				for(int i=0; i<6;i++)
+				{
+					espacios.get(i).quitarValores(opcionesAQuitar);
+				}
+			}
+			
+		}
 
 }

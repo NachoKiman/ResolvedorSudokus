@@ -2,6 +2,7 @@ package backend;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Sudoku {
 
@@ -24,7 +25,7 @@ public class Sudoku {
 		while (!resuelto) {
 			reducirOpciones();
 			resuelto = manejarResultado();
-			// mostrar();
+			 mostrar();
 		}
 	}
 
@@ -61,12 +62,59 @@ public class Sudoku {
 
 	// TODO Hacer generico para cualquier tamaño, pero paja
 	private void buscarValoresLinealesVertical() {
-		// Busco las componentes verticales del cuadrado
-		for (int i = 0; i < 3; i++) {
+		// Itero los cuadrados
+				for (int i = 0; i < orden; i++) {
+					EntidadSudoku cuadrado = cuadrados.get(i);
+					List<Integer> opcionesLinea1 = new ArrayList();
+					List<Integer> opcionesLinea2 = new ArrayList<Integer>();
+					List<Integer> opcionesLinea3 = new ArrayList<Integer>();
+					// Busco en las lineas horizontales del cuadrado
+					for (int j = 0; j < 3; j++) {
+						opcionesLinea1.addAll(cuadrado.getEspacios().get(j * 3)
+								.getOpciones());
+						opcionesLinea2.addAll(cuadrado.getEspacios().get(j * 3 + 1)
+								.getOpciones());
+						opcionesLinea3.addAll(cuadrado.getEspacios().get(j * 3 + 2)
+								.getOpciones());
+					}
+					List<Integer> opcionesFinalesLinea1 = new ArrayList<Integer>();
+					opcionesFinalesLinea1.addAll(opcionesLinea1);
+					opcionesFinalesLinea1.removeAll(opcionesLinea2);
+					opcionesFinalesLinea1.removeAll(opcionesLinea3);
 
-		}
+					List<Integer> opcionesFinalesLinea2 = new ArrayList<Integer>();
+					opcionesFinalesLinea2.addAll(opcionesLinea2);
+					opcionesFinalesLinea2.removeAll(opcionesLinea1);
+					opcionesFinalesLinea2.removeAll(opcionesLinea3);
+
+					List<Integer> opcionesFinalesLinea3 = new ArrayList<Integer>();
+					opcionesFinalesLinea3.addAll(opcionesLinea3);
+					opcionesFinalesLinea3.removeAll(opcionesLinea1);
+					opcionesFinalesLinea3.removeAll(opcionesLinea2);
+
+					// Si hay alguna opciones que exista solo en la linea 1, la saco de
+					// toda la linea
+					if (opcionesFinalesLinea1.size() != 0) {
+						int numeroFila = obtenerColumna(i, 0);
+						columnas.get(numeroFila).sacarValoresColumna(i, opcionesFinalesLinea1);
+						
+					}
+					if (opcionesFinalesLinea2.size() != 0) {
+						int numeroFila = obtenerColumna(i, 1);
+						columnas.get(numeroFila).sacarValoresColumna(i, opcionesFinalesLinea2);
+						
+					}
+					if (opcionesFinalesLinea3.size() != 0) {
+						int numeroFila = obtenerColumna(i, 2);
+						columnas.get(numeroFila).sacarValoresColumna(i, opcionesFinalesLinea3);
+						
+					}
+
+				}
 
 	}
+
+	
 
 	// TODO Hacer generico para cualquier tamaño, pero paja
 	private void buscarValoresLinealesHorizontal() {
@@ -80,9 +128,9 @@ public class Sudoku {
 			for (int j = 0; j < 3; j++) {
 				opcionesLinea1.addAll(cuadrado.getEspacios().get(j * 3)
 						.getOpciones());
-				opcionesLinea2.addAll(cuadrado.getEspacios().get(j * 3 + 3)
+				opcionesLinea2.addAll(cuadrado.getEspacios().get(j * 3 + 1)
 						.getOpciones());
-				opcionesLinea3.addAll(cuadrado.getEspacios().get(j * 3 + 6)
+				opcionesLinea3.addAll(cuadrado.getEspacios().get(j * 3 + 2)
 						.getOpciones());
 			}
 			List<Integer> opcionesFinalesLinea1 = new ArrayList<Integer>();
@@ -104,8 +152,18 @@ public class Sudoku {
 			// toda la linea
 			if (opcionesFinalesLinea1.size() != 0) {
 				int numeroFila = obtenerFila(i, 0);
+				filas.get(numeroFila).sacarValoresFila(i, opcionesFinalesLinea1);
 				
-				//TODO falta sacar las opciones de los espacios de la fila que no pertenecen a la linea
+			}
+			if (opcionesFinalesLinea2.size() != 0) {
+				int numeroFila = obtenerFila(i, 1);
+				filas.get(numeroFila).sacarValoresFila(i, opcionesFinalesLinea2);
+				
+			}
+			if (opcionesFinalesLinea3.size() != 0) {
+				int numeroFila = obtenerFila(i, 2);
+				filas.get(numeroFila).sacarValoresFila(i, opcionesFinalesLinea3);
+				
 			}
 
 		}
@@ -161,6 +219,55 @@ public class Sudoku {
 		}
 		return -1;
 
+	}
+	
+	private int obtenerColumna(int numeroDeCuadrado, int numeroLineaCuadrado) {
+		if ((numeroDeCuadrado == 0)||(numeroDeCuadrado == 3)||(numeroDeCuadrado == 6)) {
+			switch (numeroLineaCuadrado) {
+			case 0:
+				return 0;
+
+			case 1:
+				return 1;
+
+			case 2:
+				return 2;
+
+			default:
+				return -1;
+			}
+		}
+		if ((numeroDeCuadrado == 1)||(numeroDeCuadrado == 4)||(numeroDeCuadrado == 7)) {
+			switch (numeroLineaCuadrado) {
+			case 0:
+				return 3;
+
+			case 1:
+				return 4;
+
+			case 2:
+				return 5;
+
+			default:
+				return -1;
+			}
+		}
+		if ((numeroDeCuadrado == 2)||(numeroDeCuadrado == 5)||(numeroDeCuadrado == 8)) {
+			switch (numeroLineaCuadrado) {
+			case 0:
+				return 6;
+
+			case 1:
+				return 7;
+
+			case 2:
+				return 8;
+
+			default:
+				return -1;
+			}
+		}
+		return -1;
 	}
 
 	private void buscarValoresFantasmas() {
