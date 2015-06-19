@@ -104,6 +104,7 @@ public class Sudoku {
 			// toda la linea
 			if (opcionesFinalesLinea1.size() != 0) {
 				int numeroFila = obtenerFila(i, 0);
+				
 				//TODO falta sacar las opciones de los espacios de la fila que no pertenecen a la linea
 			}
 
