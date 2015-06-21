@@ -229,11 +229,11 @@ public class EntidadSudoku {
 		//TODO falta refactorizar para que sean mas que 9
 		
 		public void buscarValoresBloqueantes(int[] opciones) {
-//			for(int i =2; i<9; i++)
-//			{
-//				hayValorBloqueante(opciones, i);
-//			}
-			hayValorBloqueante(opciones, 2);
+			for(int i =2; i<9; i++)
+			{
+				hayValorBloqueante(opciones, i);
+			}
+			
 			
 		}
 
