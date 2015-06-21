@@ -1,8 +1,8 @@
 package backend;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Sudoku {
 
@@ -25,7 +25,8 @@ public class Sudoku {
 		while (!resuelto) {
 			reducirOpciones();
 			resuelto = manejarResultado();
-			 mostrar();
+//			mostrar();
+			mostrarEstadoActual();
 		}
 	}
 
@@ -55,8 +56,9 @@ public class Sudoku {
 
 	private void buscarValoresLineales() {
 		// Solo se busca en columnas y filas y los cuadrados ayudan
-		buscarValoresLinealesHorizontal();
 		buscarValoresLinealesVertical();
+		buscarValoresLinealesHorizontal();
+		
 
 	}
 
@@ -65,7 +67,7 @@ public class Sudoku {
 		// Itero los cuadrados
 				for (int i = 0; i < orden; i++) {
 					EntidadSudoku cuadrado = cuadrados.get(i);
-					List<Integer> opcionesLinea1 = new ArrayList();
+					List<Integer> opcionesLinea1 = new ArrayList<Integer>();
 					List<Integer> opcionesLinea2 = new ArrayList<Integer>();
 					List<Integer> opcionesLinea3 = new ArrayList<Integer>();
 					// Busco en las lineas horizontales del cuadrado
@@ -77,6 +79,19 @@ public class Sudoku {
 						opcionesLinea3.addAll(cuadrado.getEspacios().get(j * 3 + 2)
 								.getOpciones());
 					}
+					//Saco los repetidos
+					HashSet<Integer> hashSet1 = new HashSet<Integer>(opcionesLinea1);
+					opcionesLinea1.clear();
+					opcionesLinea1.addAll(hashSet1);
+					
+					HashSet<Integer> hashSet2 = new HashSet<Integer>(opcionesLinea2);
+					opcionesLinea2.clear();
+					opcionesLinea2.addAll(hashSet2);
+					
+					HashSet<Integer> hashSet3 = new HashSet<Integer>(opcionesLinea3);
+					opcionesLinea3.clear();
+					opcionesLinea3.addAll(hashSet3);
+					
 					List<Integer> opcionesFinalesLinea1 = new ArrayList<Integer>();
 					opcionesFinalesLinea1.addAll(opcionesLinea1);
 					opcionesFinalesLinea1.removeAll(opcionesLinea2);
@@ -126,13 +141,27 @@ public class Sudoku {
 			List<Integer> opcionesLinea3 = new ArrayList<Integer>();
 			// Busco en las lineas horizontales del cuadrado
 			for (int j = 0; j < 3; j++) {
-				opcionesLinea1.addAll(cuadrado.getEspacios().get(j * 3)
+				opcionesLinea1.addAll(cuadrado.getEspacios().get(j)
 						.getOpciones());
-				opcionesLinea2.addAll(cuadrado.getEspacios().get(j * 3 + 1)
+				opcionesLinea2.addAll(cuadrado.getEspacios().get(j + 3)
 						.getOpciones());
-				opcionesLinea3.addAll(cuadrado.getEspacios().get(j * 3 + 2)
+				opcionesLinea3.addAll(cuadrado.getEspacios().get(j + 6)
 						.getOpciones());
 			}
+			
+			//Saco los repetidos
+			HashSet<Integer> hashSet1 = new HashSet<Integer>(opcionesLinea1);
+			opcionesLinea1.clear();
+			opcionesLinea1.addAll(hashSet1);
+			
+			HashSet<Integer> hashSet2 = new HashSet<Integer>(opcionesLinea2);
+			opcionesLinea2.clear();
+			opcionesLinea2.addAll(hashSet2);
+			
+			HashSet<Integer> hashSet3 = new HashSet<Integer>(opcionesLinea3);
+			opcionesLinea3.clear();
+			opcionesLinea3.addAll(hashSet3);
+			
 			List<Integer> opcionesFinalesLinea1 = new ArrayList<Integer>();
 			opcionesFinalesLinea1.addAll(opcionesLinea1);
 			opcionesFinalesLinea1.removeAll(opcionesLinea2);
