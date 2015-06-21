@@ -26,7 +26,7 @@ public class Sudoku {
 			reducirOpciones();
 			resuelto = manejarResultado();
 //			mostrar();
-			mostrarEstadoActual();
+//			mostrarEstadoActual();
 		}
 	}
 
@@ -53,6 +53,8 @@ public class Sudoku {
 		return resuelto;
 
 	}
+
+
 
 	private void buscarValoresLineales() {
 		// Solo se busca en columnas y filas y los cuadrados ayudan

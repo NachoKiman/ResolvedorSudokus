@@ -65,6 +65,8 @@ public class EntidadSudoku {
 		if (hayValoresOcultos) {
 			asignoValoresOcultos(opciones);
 		}
+		
+		buscarValoresBloqueantes(opciones);
 
 	}
 
@@ -218,6 +220,62 @@ public class EntidadSudoku {
 				for(int i=0; i<6;i++)
 				{
 					espacios.get(i).quitarValores(opcionesAQuitar);
+				}
+			}
+			
+		}
+
+		//Quiero buscar valores que solo puedan ir en un lugar particular
+		//TODO falta refactorizar para que sean mas que 9
+		
+		public void buscarValoresBloqueantes(int[] opciones) {
+//			for(int i =2; i<9; i++)
+//			{
+//				hayValorBloqueante(opciones, i);
+//			}
+			hayValorBloqueante(opciones, 2);
+			
+		}
+
+		//Si hay n numeros que aparecen solo n veces, es posible que sea un valor bloqueante, para 
+		//checkearlo hay que ver si esos valores pertenecen a solo n espacios.
+		
+		//TODO QUE ASCO DE CODIGO, es lo que hay
+		private void hayValorBloqueante(int[] opciones, int numeroABuscar) {
+			int i=0;
+			List<Integer> opcionesEncontradas = new ArrayList<>();
+			int[] indicesBloqueantes = inicioArrayOpciones();
+			for(int j=0; j<opciones.length;j++)
+			{
+				if(opciones[j]==numeroABuscar)
+				{
+					opcionesEncontradas.add(j+1);
+					i++;
+					
+				}
+				
+			}
+			if (i==numeroABuscar)
+			{
+				int h=0;
+				for(int k=0; k<espacios.size();k++)
+				{
+					Espacio espacio = espacios.get(k);
+					if(espacio.getOpciones().containsAll(opcionesEncontradas))
+					{
+						indicesBloqueantes[h] = k;
+						h++;
+					}
+				}
+				
+				if(h==numeroABuscar)
+				{
+					for(int n =0; n<h; n++)
+					{
+						espacios.get(indicesBloqueantes[n]).getOpciones().clear();
+						espacios.get(indicesBloqueantes[n]).getOpciones().addAll(opcionesEncontradas);
+						
+					}
 				}
 			}
 			
