@@ -95,7 +95,7 @@ public class Espacio {
 	}
 
 	//Devuelve 1 si son fantasmas(tienen las mismas opciones), 0 sino
-	public int sonFantasma(Espacio espacio) {
+	public int sonPerezTorre(Espacio espacio) {
 		if(opciones.equals(espacio.opciones))
 		{
 			return 1;
