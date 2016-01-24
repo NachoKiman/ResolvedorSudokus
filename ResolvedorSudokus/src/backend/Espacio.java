@@ -112,4 +112,21 @@ public class Espacio {
 		opciones.removeAll(opcionesAQuitar);
 		
 	}
+
+
+	public boolean hayError() {
+		return opciones.size()==0;
+	}
+
+
+	public boolean esProbable() {
+		
+		return opciones.size()==2;
+	}
+
+
+	public void probar() {
+		opciones.remove(0);
+		
+	}
 }

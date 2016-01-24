@@ -281,4 +281,36 @@ public class EntidadSudoku {
 			
 		}
 
+		public boolean hayError() {
+			ArrayList<Integer> numeros =new ArrayList<>();
+			numeros.add(1);
+			numeros.add(2);
+			numeros.add(3);
+			numeros.add(4);
+			numeros.add(5);
+			numeros.add(6);
+			numeros.add(7);
+			numeros.add(8);
+			numeros.add(9);
+			boolean booleanNecesario;
+			for(int i=0;i<9;i++){
+				Integer valorACorroborar = getEspacios().get(i).getValor();
+				if(!valorACorroborar.equals(-1) && !numeros.contains(valorACorroborar)){
+					return true;
+				}
+				booleanNecesario = numeros.remove(valorACorroborar);
+				
+			}
+			return false;
+		}
+
+		public void probarValor() {
+			for(int i=0;i<9;i++){
+				if(espacios.get(i).esProbable()){
+					espacios.get(i).probar();
+				}
+			}
+			
+		}
+
 }
