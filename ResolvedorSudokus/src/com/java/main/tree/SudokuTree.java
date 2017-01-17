@@ -1,4 +1,4 @@
-package tree;
+package com.java.main.tree;
 
 import java.util.ArrayList;
 
@@ -33,7 +33,6 @@ public class SudokuTree {
 			if(lastNode.getCaminos().size()!=0){
 				lastNode =  lastNode.getNewCamino();
 			}else{
-//				lastNode.getSudoku().mostrar();
 				lastNode= findNewCamino();
 			}
 		}else{

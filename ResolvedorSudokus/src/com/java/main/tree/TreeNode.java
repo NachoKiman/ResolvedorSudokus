@@ -1,9 +1,9 @@
-package tree;
+package com.java.main.tree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import backend.Sudoku;
+import com.java.main.backend.Sudoku;
 
 public class TreeNode {
 
